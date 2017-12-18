@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 var gracefulShutdown;
 var dbURI = 'mongodb://gsmtrek:gsmtrek1@ds127126.mlab.com:27126/gsmtrek';
+/*
 if (process.env.NODE_ENV === 'production') {
     dbURI = process.env.MONGOLAB_URI;
-}
+}*/
 
 mongoose.connect(dbURI);
 
