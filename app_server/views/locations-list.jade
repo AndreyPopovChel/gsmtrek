@@ -1,31 +1,38 @@
 extends layout
 
-table.table
-    thead
+block content
+  #banner.page-header
+    .row
+      .col-lg-6
+        h1= pageHeader.title
+         small &nbsp;#{pageHeader.strapline}
+
+    table.table
+      thead
         tr.row: th серийный номер
-            th счетчик попыток
-            th уровень заряда
-            th дата GPS
-            th время GPS
-            th широта
-            th долгота
-            th спутники GPS
-            th спутники GLONASS
-            th количество спутников
-            th числовой параметр
-            th широта
-            th долгота
-            th дата GSM
-            th время GSM
-            th влажность
-            th температура 1
-            th давление
-            th температура 2
-            th органические вещества
-            th углекислый газ
-            th звуковое давление
-    tbody
-    each location, i in locations
+                th счетчик попыток
+                th уровень заряда
+                th дата GPS
+                th время GPS
+                th широта
+                th долгота
+                th спутники GPS
+                th спутники GLONASS
+                th количество спутников
+                th числовой параметр
+                th широта
+                th долгота
+                th дата GSM
+                th время GSM
+                th влажность
+                th температура 1
+                th давление
+                th температура 2
+                th органические вещества
+                th углекислый газ
+                th звуковое давление
+      tbody
+       each location, i in locations
         tr.row: td #{location.sn}
             td #{location.ctr}
             td #{location.batt}
