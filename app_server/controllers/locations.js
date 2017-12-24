@@ -65,6 +65,19 @@ module.exports.homelist = function(req, res){
   );
 };
 
+module.exports.settings = function(req, res){
+  var result = {
+    "sn": req.query.sn,
+    "ctr": "1",
+    "cfgLock": "1",
+    "updateTimeMin": "240",
+    "smsEnable": "0",
+    "phoneNumber": "+7XXXXXXXXXX",
+    "paramsmsEnable": "1110000000011111100000"
+  };
+  res.status(200).json(result);
+};
+
 module.exports.postLocation = function(req, res){
   var requestOptions, path;
   path = '/api/locations';
@@ -77,7 +90,7 @@ module.exports.postLocation = function(req, res){
   request(
       requestOptions,
       function(err, response, body) {
-        res.json(response);
+        res.status(200).json(response);
       }
   );
 };

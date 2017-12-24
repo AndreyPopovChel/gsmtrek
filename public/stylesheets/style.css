@@ -1,5 +1,6 @@
 .review {padding-bottom: 5px;}
-.panel-body.review-container {padding-top: 0;}
+.panel-body.review-container {padding-top: 0; margin: 0;}
 .review-header {margin-bottom: 10px;}
 .reviewAuthor {margin: 0 5px;}
+.container {margin: 0 !important;}
 .reviewTimestamp {color: #ccc;}
