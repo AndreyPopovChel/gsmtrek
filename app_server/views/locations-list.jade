@@ -9,7 +9,9 @@ block content
 
     table.table
       thead
-        tr.row: th серийный номер
+        tr.row: th порядковый номер посылки
+                th время приема сообщения
+                th серийный номер
                 th счетчик попыток
                 th уровень заряда
                 th дата GPS
@@ -34,6 +36,8 @@ block content
       tbody
        each location, i in locations
         tr.row: td #{location.sn}
+            td #{location.number}
+            td #{location.timestamp ? new Date(location.timestamp).toLocaleDateString('en-US') + "\n" + new Date(location.timestamp).toLocaleTimeString('ru-RU') : ''}
             td #{location.ctr}
             td #{location.batt}
             td #{location.date}

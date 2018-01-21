@@ -1,4 +1,7 @@
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
+
+autoIncrement.initialize(mongoose.connection);
 
 var locationSchema = new mongoose.Schema({
     sn: String,
@@ -22,7 +25,16 @@ var locationSchema = new mongoose.Schema({
     temperature2: String,
     TVOC: String,
     CO2eq: String,
-    acoustic: String
+    acoustic: String,
+    timestamp: Date
 });
+
+locationSchema.plugin(autoIncrement.plugin, {
+    model: 'Counter',
+    field: 'number',
+    startAt: 1,
+    incrementBy: 1
+});
+var Counter = mongoose.model('Counter', locationSchema);
 
 mongoose.model('Location', locationSchema);

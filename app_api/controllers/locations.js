@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
+
 var Loc = mongoose.model('Location');
 
 var sendJSONresponse = function (res, status, content) {
@@ -8,7 +10,6 @@ var sendJSONresponse = function (res, status, content) {
 
 /* GET list of locations */
 module.exports.locationsList = function (req, res) {
-
     Loc.find(function (err, results, stats) {
         var locations;
         if (err) {
@@ -24,6 +25,7 @@ module.exports.locationsList = function (req, res) {
 var buildLocationList = function (req, res, results) {
     var locations = [];
     results.forEach(function (doc) {
+
         locations.push({
             sn: doc.sn,
             ctr: doc.ctr,
@@ -46,10 +48,12 @@ var buildLocationList = function (req, res, results) {
             "temperature 2": doc.temperature2,
             TVOC: doc.TVOC,
             CO2eq: doc.CO2eq,
-            acoustic: doc.acoustic
-
+            acoustic: doc.acoustic,
+            timestamp: doc.timestamp,
+            number: doc.number
         });
     });
+    locations.reverse();
     return locations;
 };
 
@@ -84,7 +88,7 @@ module.exports.locationsReadOne = function (req, res) {
 /* POST a new location */
 /* /api/locations */
 module.exports.locationsCreate = function (req, res) {
-    console.log(req.body);
+    console.log("req: "  + JSON.stringify(req.body));
     Loc.create({
         sn: req.body.sn,
         ctr: req.body.ctr,
@@ -107,7 +111,8 @@ module.exports.locationsCreate = function (req, res) {
         temperature2: req.body["temperature 2"],
         TVOC: req.body.TVOC,
         CO2eq: req.body.CO2eq,
-        acoustic: req.body.acoustic
+        acoustic: req.body.acoustic,
+        timestamp: new Date()
 
     }, function (err, location) {
         if (err) {

@@ -81,18 +81,16 @@ module.exports.settings = function(req, res){
 module.exports.postLocation = function(req, res){
   var requestOptions, path;
   path = '/api/locations';
-  var postdata = req.body;
-  requestOptions = {
-    url : apiOptions.server + path,
-    method : "POST",
-    json : postdata
-  };
-  request(
-      requestOptions,
-      function(err, response, body) {
-        res.status(200).json(response);
-      }
-  );
+
+  request({
+    method: 'POST',
+    url: apiOptions.server + path,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(req.body)
+  }, function (error, response, body) {
+    res.status(200).json(response);
+  });
+
 };
 
 var getLocationInfo = function (req, res, callback) {
