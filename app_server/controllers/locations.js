@@ -36,6 +36,21 @@ var renderHomepage = function(req, res, responseBody){
       message = "No places found nearby";
     }
   }
+
+  var filteredLocations = responseBody;
+
+  if(req.query['sn']) {
+    function filterBySn(obj) {
+      if ('sn' in obj && obj.sn === req.query['sn']) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    filteredLocations = filteredLocations.filter(filterBySn);
+  }
+
   res.render('locations-list', {
     title: 'Loc8r - find a place to work with wifi',
     pageHeader: {
@@ -43,7 +58,7 @@ var renderHomepage = function(req, res, responseBody){
       strapline: ''
     },
     sidebar: "",
-    locations: responseBody,
+    locations: filteredLocations,
     message: message
   });
 };

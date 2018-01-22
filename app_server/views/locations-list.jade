@@ -4,9 +4,6 @@ block content
   #banner.page-header
     .row
       .col-lg-6
-        h1= pageHeader.title
-         small &nbsp;#{pageHeader.strapline}
-
     table.table
       thead
         tr.row: th порядковый номер посылки
@@ -36,7 +33,7 @@ block content
       tbody
        each location, i in locations
         tr.row: td #{location.number}
-            td #{location.timestamp ? new Date(location.timestamp).toLocaleDateString('en-US') + "\n" + new Date(location.timestamp).toLocaleTimeString('ru-RU') : ''}
+            td #{location.timestamp ? new Date(location.timestamp).toLocaleDateString("ru") + "\n" + new Date(location.timestamp).toLocaleTimeString('ru-RU') : ''}
             td #{location.sn}
             td #{location.ctr}
             td #{location.batt}
