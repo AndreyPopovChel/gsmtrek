@@ -10,7 +10,7 @@ block content
                 th время приема сообщения
                 th серийный номер
                 th счетчик попыток
-                th уровень заряда
+                th уровень заряда АКБ, %
                 th дата GPS
                 th время GPS
                 th широта
@@ -23,17 +23,17 @@ block content
                 th долгота
                 th дата GSM
                 th время GSM
-                th влажность
-                th температура 1
-                th давление
-                th температура 2
-                th органические вещества
-                th углекислый газ
+                th относительная влажность, %
+                th температура 1, град С
+                th атмосферное давление, hPa
+                th атмосферное давление, hPa
+                th ЛОВ (TVOC), ppb
+                th углекислый газ (CO2eq), ppm
                 th звуковое давление
       tbody
        each location, i in locations
         tr.row: td #{location.number}
-            td #{location.timestamp ? new Date(location.timestamp).toLocaleDateString("ru") + "\n" + new Date(location.timestamp).toLocaleTimeString('ru-RU') : ''}
+            td #{location.timestamp}
             td #{location.sn}
             td #{location.ctr}
             td #{location.batt}

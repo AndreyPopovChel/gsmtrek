@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var moment = require('moment');
 var autoIncrement = require('mongoose-auto-increment');
 
 var Loc = mongoose.model('Location');
@@ -49,7 +50,7 @@ var buildLocationList = function (req, res, results) {
             TVOC: doc.TVOC,
             CO2eq: doc.CO2eq,
             acoustic: doc.acoustic,
-            timestamp: doc.timestamp,
+            timestamp: doc.timestamp ? moment(doc.timestamp).format('DD.MM.YYYY H:mm:ss') : '-',
             number: doc.number
         });
     });
