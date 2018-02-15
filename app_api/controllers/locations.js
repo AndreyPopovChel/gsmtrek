@@ -54,7 +54,21 @@ var buildLocationList = function (req, res, results) {
             number: doc.number
         });
     });
-    locations.reverse();
+    locations.sort(function(a,b)
+    {
+        var left = 0;
+        if(a.number)
+        {
+            left = parseInt(a.number);
+        }
+        var right = 0;
+        if(b.number)
+        {
+            right = parseInt(b.number);
+        }
+        return (left <right) ? 1 : ((right < left) ? -1 : 0);}
+    );
+
     return locations;
 };
 
