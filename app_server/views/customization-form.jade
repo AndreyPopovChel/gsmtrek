@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  .row.page-header
+    .col-lg-12
+      h1= pageHeader.title
+  .row
+    .col-xs-12.col-md-6
+      form.form-horizontal(action="", method="post", role="form")
+        .form-group
+          label.col-xs-10.col-sm-8.control-label(for="sn") Заводской номер
+          .col-xs-12.col-sm-10
+            input#name.form-control(name="sn")
+        .form-group
+          label.col-xs-10.col-sm-8.control-label(for="cfgLock") Сохранить изменения в регистраторе
+          .col-xs-12.col-sm-10
+            input#name.form-control(name="cfgLock")
+        .form-group
+          label.col-xs-10.col-sm-8.control-label(for="updateTimeMin") Интервал обновления данных
+          .col-xs-12.col-sm-10
+            input#name.form-control(name="updateTimeMin")
+        .form-group
+          label.col-xs-10.col-sm-8.control-label(for="smsEnable") Разрешена отправка СМС
+          .col-xs-12.col-sm-10
+            input#name.form-control(name="smsEnable")
+        .form-group
+          label.col-xs-10.col-sm-8.control-label(for="phoneNumber") Номер телефона для отправки СМС
+          .col-xs-12.col-sm-10
+            input#name.form-control(name="phoneNumber")
+        .form-group
+          label.col-xs-10.col-sm-8.control-label(for="paramsmsEnable") Формат СМС сообщения
+          .col-xs-12.col-sm-10
+            input#name.form-control(name="paramsmsEnable")
+
+        button.btn.btn-default.pull-right Сохранить настройку ответа
+    .col-xs-12.col-md-4
+

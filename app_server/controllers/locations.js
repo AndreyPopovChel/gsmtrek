@@ -52,7 +52,7 @@ var renderHomepage = function(req, res, responseBody){
   }
 
   res.render('locations-list', {
-    title: 'Loc8r - find a place to work with wifi',
+    title: 'GSM tracking',
     pageHeader: {
       title: 'GSM tracking',
       strapline: ''
@@ -80,23 +80,61 @@ module.exports.homelist = function(req, res){
   );
 };
 
-module.exports.settings = function(req, res){
-  var result = {
-    "sn": req.query.sn,
-    "ctr": "1",
-    "cfgLock": "1",
-    "updateTimeMin": "240",
-    "smsEnable": "0",
-    "phoneNumber": "+7XXXXXXXXXX",
-    "paramsmsEnable": "1110000000011111100000"
+/* GET 'customize' page */
+module.exports.customize = function(req, res){
+  res.render('customization-form', {
+    title: 'Customization',
+    pageHeader: { title: 'Customization' },
+    error: req.query.err
+  });
+};
+
+module.exports.doCustomize = function(req, res){
+  var requestOptions, path, postdata;
+  path = "/api/customize";
+  postdata = {
+    sn: req.body.sn,
+    cfgLock: req.body.cfgLock,
+    updateTimeMin: req.body.updateTimeMin,
+    smsEnable: req.body.smsEnable,
+    phoneNumber: req.body.phoneNumber,
+    paramsmsEnable: req.body.paramsmsEnable
   };
-  res.status(200).json(result);
+  requestOptions = {
+    url : apiOptions.server + path,
+    method : "POST",
+    json : postdata
+  };
+  if (!postdata.sn) {
+    res.redirect('/customize');
+  } else {
+    request(
+        requestOptions,
+        function(err, response, body) {
+          res.redirect('/customize');
+        }
+    );
+  }
+};
+
+module.exports.settings = function(req, res){
+  var requestOptions, path;
+  path = '/api/customize';
+  if(req.query['sn'])
+  {
+    path += '?sn=' + req.query['sn'];
+  }
+  request({
+    method: 'GET',
+    url: apiOptions.server + path
+  }, function (error, response, body) {
+    res.status(200).send(body);
+  });
 };
 
 module.exports.postLocation = function(req, res){
   var requestOptions, path;
   path = '/api/locations';
-
   request({
     method: 'POST',
     url: apiOptions.server + path,
@@ -105,7 +143,6 @@ module.exports.postLocation = function(req, res){
   }, function (error, response, body) {
     res.status(200).json(response);
   });
-
 };
 
 var getLocationInfo = function (req, res, callback) {
