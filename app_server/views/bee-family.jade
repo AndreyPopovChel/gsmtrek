@@ -1,0 +1,26 @@
+extends layout_with_refresh
+
+block content
+  .row.page-header: .col-lg-12
+      h1= pageHeader.title
+  .row
+    each location, i in locations
+      .col-md-2.mb-2
+        ul.list-group.mb-2
+          li.list-group-item.d-flex.justify-content-between
+            h2.strong Улей № #{location.sn}
+          li.list-group-item.d-flex.justify-content-between.lh-condensed
+            h4.text-success T1 = #{location['temperature 1']} &deg;C
+          li.list-group-item.d-flex.justify-content-between.lh-condensed
+            h4.text-success H1 = #{location.humidity} %
+          li.list-group-item.d-flex.justify-content-between.lh-condensed
+            h4.text-danger T2 = #{location['temperature 2']} &deg;C
+          li.list-group-item.d-flex.justify-content-between.lh-condensed
+            h4.text-success CO2 = #{location.CO2eq} ppm
+          li.list-group-item.d-flex.justify-content-between.lh-condensed
+            div
+              h4.text-warning Крышка = ЗАКР
+              small.text-muted #{location.sn}
+
+
+

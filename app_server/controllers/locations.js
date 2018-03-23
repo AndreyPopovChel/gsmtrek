@@ -52,9 +52,9 @@ var renderHomepage = function(req, res, responseBody){
   }
 
   res.render('locations-list', {
-    title: 'GSM tracking',
+    title: 'АРМ Пчеловода Система ТЕССО.',
     pageHeader: {
-      title: 'GSM tracking',
+      title: 'АРМ Пчеловода Система ТЕССО.',
       strapline: ''
     },
     sidebar: "",
@@ -63,7 +63,46 @@ var renderHomepage = function(req, res, responseBody){
   });
 };
 
+var renderCards = function(req, res, responseBody){
+  var message;
+  if (!(responseBody instanceof Array)) {
+    message = "API lookup error";
+    responseBody = [];
+  } else {
+    if (!responseBody.length) {
+      message = "No places found nearby";
+    }
+  }
+
+  res.render('bee-family', {
+    title: 'АРМ Пчеловода Система ТЕССО.',
+    pageHeader: {
+      title: 'АРМ Пчеловода Система ТЕССО.',
+      strapline: ''
+    },
+    sidebar: "",
+    locations: responseBody,
+    message: message
+  });
+};
+
 /* GET 'home' page */
+module.exports.cards = function(req, res){
+  var requestOptions, path;
+  path = '/api/lastLocations';
+  requestOptions = {
+    url : apiOptions.server + path,
+    method : "GET",
+    json : {}
+  };
+  request(
+      requestOptions,
+      function(err, response, body) {
+        renderCards(req, res, body);
+      }
+  );
+};
+
 module.exports.homelist = function(req, res){
   var requestOptions, path;
   path = '/api/locations';
@@ -83,8 +122,8 @@ module.exports.homelist = function(req, res){
 /* GET 'customize' page */
 module.exports.customize = function(req, res){
   res.render('customization-form', {
-    title: 'Customization',
-    pageHeader: { title: 'Customization' },
+    title: 'Настройка ответа',
+    pageHeader: { title: 'Настройка ответа' },
     error: req.query.err
   });
 };

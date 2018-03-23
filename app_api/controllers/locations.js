@@ -23,36 +23,65 @@ module.exports.locationsList = function (req, res) {
     });
 };
 
+module.exports.lastLocationsList = function (req, res) {
+    Loc.aggregate(
+        [
+            { $sort: { 'number': -1 } },
+            { $group: {
+                _id: '$sn',
+                sn: { $first: '$sn' },
+                date: { $first: '$date' },
+                number: { $first: '$number' },
+                temperature1: { $first: '$temperature1' },
+                humidity: { $first: '$humidity' },
+                temperature2: { $first: '$temperature2' },
+                CO2eq: { $first: '$CO2eq' }
+            }}
+        ],
+        function(err,result) {
+            var locations;
+            if (err) {
+                console.log('locations error:', err);
+                sendJSONresponse(res, 404, err);
+            } else {
+                locations = buildLocationList(req, res, result);
+                sendJSONresponse(res, 200, locations);
+            }
+        }
+    );
+};
+
 var buildLocationList = function (req, res, results) {
     var locations = [];
     results.forEach(function (doc) {
-
-        locations.push({
-            sn: doc.sn,
-            ctr: doc.ctr,
-            batt: doc.batt,
-            date: doc.date,
-            time: doc.time,
-            lat: doc.lat,
-            lon: doc.lon,
-            gpsvis: doc.gpsvis,
-            gnsvis: doc.gnsvis,
-            satused: doc.satused,
-            gsmlc: doc.gsmlc,
-            gsmlat: doc.gsmlat,
-            gsmlon: doc.gsmlon,
-            gsmdate: doc.gsmdate,
-            gsmtime: doc.gsmtime,
-            humidity: doc.humidity,
-            "temperature 1": doc.temperature1,
-            pressurebarom: doc.pressurebarom,
-            "temperature 2": doc.temperature2,
-            TVOC: doc.TVOC,
-            CO2eq: doc.CO2eq,
-            acoustic: doc.acoustic,
-            timestamp: doc.timestamp ? moment(doc.timestamp).format('DD.MM.YYYY H:mm:ss') : '-',
-            number: doc.number
-        });
+      if(doc.sn) {
+          locations.push({
+              sn: doc.sn,
+              ctr: doc.ctr,
+              batt: doc.batt,
+              date: doc.date,
+              time: doc.time,
+              lat: doc.lat,
+              lon: doc.lon,
+              gpsvis: doc.gpsvis,
+              gnsvis: doc.gnsvis,
+              satused: doc.satused,
+              gsmlc: doc.gsmlc,
+              gsmlat: doc.gsmlat,
+              gsmlon: doc.gsmlon,
+              gsmdate: doc.gsmdate,
+              gsmtime: doc.gsmtime,
+              humidity: doc.humidity,
+              "temperature 1": doc.temperature1,
+              pressurebarom: doc.pressurebarom,
+              "temperature 2": doc.temperature2,
+              TVOC: doc.TVOC,
+              CO2eq: doc.CO2eq,
+              acoustic: doc.acoustic,
+              timestamp: doc.timestamp ? moment(doc.timestamp).format('DD.MM.YYYY H:mm:ss') : '-',
+              number: doc.number
+          });
+      }
     });
     locations.sort(function(a,b)
     {
