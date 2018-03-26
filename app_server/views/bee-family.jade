@@ -5,22 +5,27 @@ block content
       h1= pageHeader.title
   .row
     each location, i in locations
-      .col-md-2.mb-2
+      .col-md-3.mb-3
         ul.list-group.mb-2
           li.list-group-item.d-flex.justify-content-between
             h2.strong Улей № #{location.sn}
+            .text-info Обновлено: #{location.timestamp}
+            .text-info GPS: #{location.gsmlat}N #{location.gsmlon}E
           li.list-group-item.d-flex.justify-content-between.lh-condensed
             h4.text-success T1 = #{location['temperature 1']} &deg;C
-          li.list-group-item.d-flex.justify-content-between.lh-condensed
-            h4.text-success H1 = #{location.humidity} %
-          li.list-group-item.d-flex.justify-content-between.lh-condensed
             h4.text-danger T2 = #{location['temperature 2']} &deg;C
           li.list-group-item.d-flex.justify-content-between.lh-condensed
-            h4.text-success CO2 = #{location.CO2eq} ppm
+            h5.text-success H1 = #{location.humidity} %
+            h5.text-success CO2 = #{location.CO2eq} ppm
+            h5.text-success Атм.давление = #{location.pressurebarom} hPa
           li.list-group-item.d-flex.justify-content-between.lh-condensed
-            div
-              h4.text-warning Крышка = ЗАКР
-              small.text-muted #{location.sn}
+            h4.text-danger ЛОВ (TVOC) = #{location.TVOC} ppb
+            h4.text-warning Крышка = ЗАКР
+          li.list-group-item.d-flex.justify-content-between.lh-condensed
+            button Послушать    звук
+            button Анализ звука пчел
+
+
 
 
 
