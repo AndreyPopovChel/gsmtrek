@@ -9,7 +9,7 @@ var sendJSONresponse = function(res, status, content) {
 /* POST a new customization (settings for response)*/
 /* /api/locations/customizations */
 module.exports.customizationsCreate = function(req, res) {
-  Customization.findOneAndUpdate({'sn':req.body.sn}, {
+  var newValue = {
     _id: req.body.sn,
     sn: req.body.sn,
     cfgLock: req.body.cfgLock,
@@ -17,7 +17,17 @@ module.exports.customizationsCreate = function(req, res) {
     smsEnable: req.body.smsEnable,
     phoneNumber: req.body.phoneNumber,
     paramsmsEnable: req.body.paramsmsEnable
-  }, {upsert:true}, function(err, customization){
+  };
+
+  var propNames = Object.getOwnPropertyNames(newValue);
+  for (var i = 0; i < propNames.length; i++) {
+    var propName = propNames[i];
+    if (newValue[propName] === null || newValue[propName] === undefined || newValue[propName] === "") {
+      delete newValue[propName];
+    }
+  }
+
+  Customization.findOneAndUpdate({'sn':req.body.sn}, newValue, {upsert:true}, function(err, customization){
     if (err) {
       console.log(err);
       sendJSONresponse(res, 400, err);

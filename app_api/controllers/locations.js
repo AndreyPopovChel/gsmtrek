@@ -49,14 +49,14 @@ module.exports.lastLocationsList = function (req, res) {
                 console.log('locations error:', err);
                 sendJSONresponse(res, 404, err);
             } else {
-                locations = buildLocationList(req, res, result);
+                locations = buildLocationList(req, res, result, true);
                 sendJSONresponse(res, 200, locations);
             }
         }
     );
 };
 
-var buildLocationList = function (req, res, results) {
+var buildLocationList = function (req, res, results, sortBySn) {
     var locations = [];
     results.forEach(function (doc) {
       if(doc.sn) {
@@ -88,20 +88,36 @@ var buildLocationList = function (req, res, results) {
           });
       }
     });
-    locations.sort(function(a,b)
+
+    if(sortBySn)
     {
-        var left = 0;
-        if(a.number)
-        {
-            left = parseInt(a.number);
-        }
-        var right = 0;
-        if(b.number)
-        {
-            right = parseInt(b.number);
-        }
-        return (left <right) ? 1 : ((right < left) ? -1 : 0);}
-    );
+        locations.sort(function (a, b) {
+                var left = 0;
+                if (a.sn) {
+                    left = parseInt(a.sn);
+                }
+                var right = 0;
+                if (b.sn) {
+                    right = parseInt(b.sn);
+                }
+                return (left < right) ? -1 : ((right < left) ? 1 : 0);
+            }
+        );
+    }
+    else {
+        locations.sort(function (a, b) {
+                var left = 0;
+                if (a.number) {
+                    left = parseInt(a.number);
+                }
+                var right = 0;
+                if (b.number) {
+                    right = parseInt(b.number);
+                }
+                return (left < right) ? 1 : ((right < left) ? -1 : 0);
+            }
+        );
+    }
 
     return locations;
 };

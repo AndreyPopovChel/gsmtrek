@@ -74,6 +74,19 @@ var renderCards = function(req, res, responseBody){
     }
   }
 
+  var mainLocations = [];
+  var otherLocations = [];
+
+  responseBody.forEach(function (doc) {
+    if (parseInt(doc.sn) <= 100000) {
+      mainLocations.push(doc);
+    }
+    else
+    {
+      otherLocations.push(doc);
+    }
+  });
+
   res.render('bee-family', {
     title: 'АРМ Пчеловода Система ТЕССО.',
     pageHeader: {
@@ -81,7 +94,8 @@ var renderCards = function(req, res, responseBody){
       strapline: ''
     },
     sidebar: "",
-    locations: responseBody,
+    locations: mainLocations,
+    otherLocations: otherLocations,
     message: message
   });
 };

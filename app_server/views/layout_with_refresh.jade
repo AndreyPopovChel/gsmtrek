@@ -10,9 +10,12 @@ html
   body
    .navbar.navbar-default.navbar-fixed-top
         .navbar-header
-          a.navbar-brand(href='/') Просмотр данных
-          a.navbar-brand(href='/datalog') Журнал посылок
-          a.navbar-brand(href='/customize') Настройка ответов
+            button.navbar-btn
+                a.navbar-nav(href='/') Просмотр данных
+            button.navbar-btn
+                a.navbar-nav(href='/datalog') Журнал посылок
+            button.navbar-btn
+                a.navbar-nav(href='/customize') Настройка ответов
           button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
             span.icon-bar
             span.icon-bar
