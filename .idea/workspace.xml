@@ -69,8 +69,8 @@
       <file leaf-file-name="bee-family.jade" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app_server/views/bee-family.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13385826" vertical-offset="442" max-vertical-offset="1054">
-              <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.23031496" vertical-offset="274" max-vertical-offset="1054">
+              <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -908,8 +908,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app_server/views/bee-family.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13385826" vertical-offset="442" max-vertical-offset="1054">
-          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.23031496" vertical-offset="274" max-vertical-offset="1054">
+          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
           <folding />
         </state>
       </provider>

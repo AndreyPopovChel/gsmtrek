@@ -7,10 +7,10 @@ block content
       h3= "ОСНОВНАЯ ПАСЕКА"
   .row
     each location, i in locations
-      .col-md-3.mb-3
+      .col-md-2.mb-2
         ul.list-group.mb-2
           li.list-group-item.d-flex.justify-content-between
-            h2.strong Улей № #{location.sn}
+            h3.strong Улей № #{location.sn}
             .text-info Обновлено: #{location.timestamp}
             .text-info GPS: #{location.gsmlat}N #{location.gsmlon}E
           li.list-group-item.d-flex.justify-content-between.lh-condensed
@@ -19,9 +19,9 @@ block content
           li.list-group-item.d-flex.justify-content-between.lh-condensed
             h5.text-success H1 = #{location.humidity} %
             h5.text-success CO2 = #{location.CO2eq} ppm
-            h5.text-danger ЛОВ (TVOC) = #{location.TVOC} ppb
+            h5.text-danger ЛОВ = #{location.TVOC} ppb
           li.list-group-item.d-flex.justify-content-between.lh-condensed
-            h5.text-success Атм.давление = #{location.pressurebarom} Pa
+            h5.text-success Атм.давл. = #{location.pressurebarom} Pa
             h4.text-warning Крышка = ЗАКР
           li.list-group-item.d-flex.justify-content-between.lh-condensed
             button Послушать    звук
@@ -30,10 +30,10 @@ block content
     h3= "ОТВОДКИ И РОИ"
   .row
     each location, i in otherLocations
-      .col-md-3.mb-3
+      .col-md-2.mb-2
         ul.list-group.mb-2
           li.list-group-item.d-flex.justify-content-between
-            h2.strong Улей № #{location.sn}
+            h3.strong Улей № #{location.sn}
             .text-info Обновлено: #{location.timestamp}
             .text-info GPS: #{location.gsmlat}N #{location.gsmlon}E
           li.list-group-item.d-flex.justify-content-between.lh-condensed
@@ -42,9 +42,9 @@ block content
           li.list-group-item.d-flex.justify-content-between.lh-condensed
             h5.text-success H1 = #{location.humidity} %
             h5.text-success CO2 = #{location.CO2eq} ppm
-            h5.text-danger ЛОВ (TVOC) = #{location.TVOC} ppb
+            h5.text-danger ЛОВ = #{location.TVOC} ppb
           li.list-group-item.d-flex.justify-content-between.lh-condensed
-            h5.text-success Атм.давление = #{location.pressurebarom} Pa
+            h5.text-success Атм.давл. = #{location.pressurebarom} Pa
             h4.text-warning Крышка = ЗАКР
           li.list-group-item.d-flex.justify-content-between.lh-condensed
             button Послушать    звук
