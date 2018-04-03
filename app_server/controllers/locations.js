@@ -52,9 +52,9 @@ var renderHomepage = function(req, res, responseBody){
   }
 
   res.render('locations-list', {
-    title: 'АРМ Пчеловода Система ТЕССО.',
+    title: 'АРМ Пчеловода Система ТЕССО',
     pageHeader: {
-      title: 'АРМ Пчеловода Система ТЕССО.',
+      title: 'АРМ Пчеловода Система ТЕССО',
       strapline: ''
     },
     sidebar: "",
@@ -83,14 +83,63 @@ var renderCards = function(req, res, responseBody){
     }
     else
     {
+      doc.color = 'blue';
       otherLocations.push(doc);
     }
   });
 
+  var colorIndex = 0;
+  for(var i = 0; i < mainLocations.length; i++)
+  {
+     if(colorIndex % 3 === 0)
+     {
+       mainLocations[i].color = '#d7ff54';
+     }
+     else if(colorIndex % 3 === 1)
+     {
+       mainLocations[i].color = '#201047';
+     }
+     else if(colorIndex % 3 === 2)
+     {
+       mainLocations[i].color = '#efeb07';
+     }
+
+     colorIndex++;
+
+     if(i == 5 || i == 11 || i == 17 || i == 23 || i == 29 || i == 35 || i == 41 || i == 47 || i == 53)
+     {
+       colorIndex++;
+     }
+  }
+
+  var colorIndex = 0;
+  for(var i = 0; i < otherLocations.length; i++)
+  {
+    if(colorIndex % 3 === 0)
+    {
+      otherLocations[i].color = '#d7ff54';
+    }
+    else if(colorIndex % 3 === 1)
+    {
+      otherLocations[i].color = '#201047';
+    }
+    else if(colorIndex % 3 === 2)
+    {
+      otherLocations[i].color = '#efeb07';
+    }
+
+    colorIndex++;
+
+    if(i == 5 || i == 11 || i == 17 || i == 23 || i == 29 || i == 35 || i == 41 || i == 47 || i == 53)
+    {
+      colorIndex++;
+    }
+  }
+
   res.render('bee-family', {
-    title: 'АРМ Пчеловода Система ТЕССО.',
+    title: 'АРМ Пчеловода Система ТЕССО',
     pageHeader: {
-      title: 'АРМ Пчеловода Система ТЕССО.',
+      title: 'АРМ Пчеловода Система ТЕССО',
       strapline: ''
     },
     sidebar: "",

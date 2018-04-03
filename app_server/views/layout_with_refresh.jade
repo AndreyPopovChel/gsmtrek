@@ -7,20 +7,13 @@ html
     link(rel='stylesheet', href='/bootstrap/css/amelia.bootstrap.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
 
-  body
-   .navbar.navbar-default.navbar-fixed-top
-        .navbar-header
-            button.navbar-btn
-                a.navbar-nav(href='/') Просмотр данных
-            button.navbar-btn
-                a.navbar-nav(href='/datalog') Журнал посылок
-            button.navbar-btn
-                a.navbar-nav(href='/customize') Настройка ответов
-          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-        #navbar-main.navbar-collapse.collapse
+  body(style='background-image: url(/images/background.jpg); background-image: linear-gradient(to right, rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.5) 100%), url(/images/background.jpg);')
+    nav.navbar.navbar-brand( role="navigation" )
+     #navbar-inverse.collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li.active: a.btn.btn-warning( href="/") Просмотр данных
+        li: a.btn.btn-danger( href="/datalog" ) Журнал посылок
+        li: a.btn.btn-success( href="/customize" ) Настройка ответов
 
     .container
       block content

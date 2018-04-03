@@ -9,7 +9,7 @@ block content
     each location, i in locations
       .col-md-2.mb-2
         ul.list-group.mb-2
-          li.list-group-item.d-flex.justify-content-between
+          li(style='background: #{location.color}').list-group-item.d-flex.justify-content-between
             h3.strong Улей № #{location.sn}
             .text-info Обновлено: #{location.timestamp}
             .text-info GPS: #{location.gsmlat}N #{location.gsmlon}E
@@ -21,18 +21,18 @@ block content
             h5.text-success CO2 = #{location.CO2eq} ppm
             h5.text-danger ЛОВ = #{location.TVOC} ppb
           li.list-group-item.d-flex.justify-content-between.lh-condensed
-            h5.text-success Атм.давл. = #{location.pressurebarom} Pa
+            h5.text-success Давл. = #{location.pressurebarom} Pa
             h4.text-warning Крышка = ЗАКР
           li.list-group-item.d-flex.justify-content-between.lh-condensed
-            button Послушать    звук
-            button Анализ звука пчел
+            a.btn.btn-warning Послушать звук
+            a.btn.btn-info Анализ звука пчел
   .row
     h3= "ОТВОДКИ И РОИ"
   .row
     each location, i in otherLocations
       .col-md-2.mb-2
         ul.list-group.mb-2
-          li.list-group-item.d-flex.justify-content-between
+          li(style='background: #{location.color}').list-group-item.d-flex.justify-content-between
             h3.strong Улей № #{location.sn}
             .text-info Обновлено: #{location.timestamp}
             .text-info GPS: #{location.gsmlat}N #{location.gsmlon}E
@@ -44,11 +44,11 @@ block content
             h5.text-success CO2 = #{location.CO2eq} ppm
             h5.text-danger ЛОВ = #{location.TVOC} ppb
           li.list-group-item.d-flex.justify-content-between.lh-condensed
-            h5.text-success Атм.давл. = #{location.pressurebarom} Pa
+            h5.text-success Давл. = #{location.pressurebarom} Pa
             h4.text-warning Крышка = ЗАКР
           li.list-group-item.d-flex.justify-content-between.lh-condensed
-            button Послушать    звук
-            button Анализ звука пчел
+            a.btn.btn-warning Послушать звук
+            a.btn.btn-info Анализ звука пчел
 
 
 
