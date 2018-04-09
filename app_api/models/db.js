@@ -49,3 +49,4 @@ process.on('SIGTERM', function() {
 // BRING IN YOUR SCHEMAS & MODELS
 require('./locations');
 require('./customizations');
+require('./stats');

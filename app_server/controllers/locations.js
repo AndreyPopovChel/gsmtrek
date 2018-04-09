@@ -93,20 +93,20 @@ var renderCards = function(req, res, responseBody){
   {
      if(colorIndex % 3 === 0)
      {
-       mainLocations[i].color = '#d7ff54';
+       mainLocations[i].color = 'white';
      }
      else if(colorIndex % 3 === 1)
      {
-       mainLocations[i].color = '#201047';
+       mainLocations[i].color = 'blue';
      }
      else if(colorIndex % 3 === 2)
      {
-       mainLocations[i].color = '#efeb07';
+       mainLocations[i].color = 'yellow';
      }
 
      colorIndex++;
 
-     if(i == 5 || i == 11 || i == 17 || i == 23 || i == 29 || i == 35 || i == 41 || i == 47 || i == 53)
+     if(i == 5 || (i % 6 === 5))
      {
        colorIndex++;
      }
@@ -117,20 +117,20 @@ var renderCards = function(req, res, responseBody){
   {
     if(colorIndex % 3 === 0)
     {
-      otherLocations[i].color = '#d7ff54';
+      otherLocations[i].color = 'white';
     }
     else if(colorIndex % 3 === 1)
     {
-      otherLocations[i].color = '#201047';
+      otherLocations[i].color = 'blue';
     }
     else if(colorIndex % 3 === 2)
     {
-      otherLocations[i].color = '#efeb07';
+      otherLocations[i].color = 'yellow';
     }
 
     colorIndex++;
 
-    if(i == 5 || i == 11 || i == 17 || i == 23 || i == 29 || i == 35 || i == 41 || i == 47 || i == 53)
+    if(i == 5 || (i % 6 === 5))
     {
       colorIndex++;
     }

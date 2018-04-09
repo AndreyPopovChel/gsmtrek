@@ -3,6 +3,7 @@ var moment = require('moment');
 var autoIncrement = require('mongoose-auto-increment');
 
 var Loc = mongoose.model('Location');
+var Stat = mongoose.model('Stat');
 
 var sendJSONresponse = function (res, status, content) {
     res.status(status);
@@ -11,14 +12,30 @@ var sendJSONresponse = function (res, status, content) {
 
 /* GET list of locations */
 module.exports.locationsList = function (req, res) {
-    Loc.find(function (err, results, stats) {
-        var locations;
+    //update statistic
+    var ip_addr = req.connection.remoteAddress;
+
+    var newValue = {
+        _id: ip_addr,
+        ip: ip_addr,
+        timestamp: new Date()
+    };
+
+    Stat.findOneAndUpdate({'ip':ip_addr}, newValue, {upsert:true}, function(err, st){
         if (err) {
-            console.log('locations error:', err);
-            sendJSONresponse(res, 404, err);
+            console.log(err);
+            sendJSONresponse(res, 400, err);
         } else {
-            locations = buildLocationList(req, res, results, stats);
-            sendJSONresponse(res, 200, locations);
+            Loc.find(function (err, results, stats) {
+                var locations;
+                if (err) {
+                    console.log('locations error:', err);
+                    sendJSONresponse(res, 404, err);
+                } else {
+                    locations = buildLocationList(req, res, results, stats);
+                    sendJSONresponse(res, 200, locations);
+                }
+            });
         }
     });
 };

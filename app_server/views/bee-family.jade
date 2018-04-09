@@ -2,14 +2,18 @@ extends layout_with_refresh
 
 block content
   .row.page-header: .col-lg-12
-      h1= pageHeader.title
+    div( style='position: relative;')
+       h1(style='opacity: 0;')= "_______________________"
+       h1(style='text-align: left;')= "АРМ Пчеловода Система ТЕССО"
+       image(src = '/images/background.jpg', style='position: absolute; top: 0px; right: 0px; height: 100px;')
   .row
       h3= "ОСНОВНАЯ ПАСЕКА"
   .row
     each location, i in locations
       .col-md-2.mb-2
         ul.list-group.mb-2
-          li(style='background: #{location.color}').list-group-item.d-flex.justify-content-between
+          li.list-group-item.d-flex.justify-content-between
+            div(style='height: 20px; length: 100%; background: #{location.color}')
             h3.strong Улей № #{location.sn}
             .text-info Обновлено: #{location.timestamp}
             .text-info GPS: #{location.gsmlat}N #{location.gsmlon}E
@@ -32,7 +36,8 @@ block content
     each location, i in otherLocations
       .col-md-2.mb-2
         ul.list-group.mb-2
-          li(style='background: #{location.color}').list-group-item.d-flex.justify-content-between
+          li.list-group-item.d-flex.justify-content-between
+            div(style='height: 20px; length: 100%; background: #{location.color}')
             h3.strong Улей № #{location.sn}
             .text-info Обновлено: #{location.timestamp}
             .text-info GPS: #{location.gsmlat}N #{location.gsmlon}E
