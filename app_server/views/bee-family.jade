@@ -11,7 +11,7 @@ block content
   .row
     each location, i in locations
       .col-md-2.mb-2
-        ul.list-group.mb-2
+        ul(style='opacity: #{location.opacity}').list-group.mb-2
           li.list-group-item.d-flex.justify-content-between
             div(style='height: 20px; length: 100%; background: #{location.color}')
             h3.strong Улей № #{location.sn}
@@ -35,7 +35,7 @@ block content
   .row
     each location, i in otherLocations
       .col-md-2.mb-2
-        ul.list-group.mb-2
+        ul(style='opacity: #{location.opacity}').list-group.mb-2
           li.list-group-item.d-flex.justify-content-between
             div(style='height: 20px; length: 100%; background: #{location.color}')
             h3.strong Улей № #{location.sn}

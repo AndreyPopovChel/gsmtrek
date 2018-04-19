@@ -1,4 +1,5 @@
 var request = require('request');
+var moment = require('moment');
 var apiOptions = {
   server : "http://localhost:3000"
 };
@@ -78,6 +79,15 @@ var renderCards = function(req, res, responseBody){
   var otherLocations = [];
 
   responseBody.forEach(function (doc) {
+    if (moment(doc.timestamp, 'DD.MM.YYYY H:mm:ss').add(2, 'days').isBefore(/*now*/))
+    {
+      doc.opacity = 0.5;
+    }
+    else
+    {
+      doc.opacity = 1;
+    }
+
     if (parseInt(doc.sn) <= 100000) {
       mainLocations.push(doc);
     }
