@@ -134,6 +134,8 @@ var buildLocationList = function (req, res, results, sortBySn) {
                 return (left < right) ? 1 : ((right < left) ? -1 : 0);
             }
         );
+
+        locations = locations.slice(0, 500);
     }
 
     return locations;
