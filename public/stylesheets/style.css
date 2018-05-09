@@ -4,3 +4,14 @@
 .reviewAuthor {margin: 0 5px;}
 .container {margin: 0 !important;}
 .reviewTimestamp {color: #ccc;}
+.list-group-item {
+    padding: 1px 1px !important;
+}
+h4, h5, h6 {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+h1, h2, h3 {
+    margin-top: 2px;
+    margin-bottom: 1px;
+}
