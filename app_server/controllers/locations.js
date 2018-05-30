@@ -77,6 +77,7 @@ var renderCards = function(req, res, responseBody){
 
   var mainLocations = [];
   var otherLocations = [];
+  var outsideParams = {};
 
   responseBody.forEach(function (doc) {
     if (moment(doc.timestamp, 'DD.MM.YYYY H:mm:ss').add(2, 'days').isBefore(/*now*/))
@@ -89,7 +90,14 @@ var renderCards = function(req, res, responseBody){
     }
 
     if (parseInt(doc.sn) <= 100000) {
-      mainLocations.push(doc);
+      if(doc.sn == 301)
+      {
+        outsideParams = doc;
+      }
+      else
+      {
+        mainLocations.push(doc);
+      }
     }
     else
     {
@@ -155,6 +163,7 @@ var renderCards = function(req, res, responseBody){
     sidebar: "",
     locations: mainLocations,
     otherLocations: otherLocations,
+    outside: outsideParams,
     message: message
   });
 };

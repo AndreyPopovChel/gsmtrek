@@ -6,6 +6,10 @@ block content
        h1(style='opacity: 0;')= "_______________________"
        h2(style='text-align: left; width: 70%')= "АРМ Пчеловода Система ТЕССО"
        image(src = '/images/background.jpg', style='position: absolute; top: 0px; right: 0px; height: 100px;')
+       h5(style='text-align: right')= "Погода на пасеке"
+         h6(style='text-align: right').text-success Температура: #{outside['temperature 2']} &deg;C
+         h6(style='text-align: right').text-success Влажность: #{outside.humidity} %
+         h6(style='text-align: right').text-success Давление: #{outside.pressurebarom} Pa
   .row
       h3= "ОСНОВНАЯ ПАСЕКА"
   .row
