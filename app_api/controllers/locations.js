@@ -29,7 +29,7 @@ module.exports.locationsList = function (req, res) {
             Loc.find(function (err, results, stats) {
                 var locations;
                 if (err) {
-                    console.log('locations error:', err);
+                    console.log('32 locations error:', err);
                     sendJSONresponse(res, 404, err);
                 } else {
                     locations = buildLocationList(req, res, results, stats);
@@ -63,7 +63,7 @@ module.exports.lastLocationsList = function (req, res) {
         function(err,result) {
             var locations;
             if (err) {
-                console.log('locations error:', err);
+                console.log('66 locations error:', err);
                 sendJSONresponse(res, 404, err);
             } else {
                 locations = buildLocationList(req, res, result, true);
