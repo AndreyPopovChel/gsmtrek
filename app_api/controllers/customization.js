@@ -16,7 +16,9 @@ module.exports.customizationsCreate = function(req, res) {
     updateTimeMin: req.body.updateTimeMin,
     smsEnable: req.body.smsEnable,
     phoneNumber: req.body.phoneNumber,
-    paramsmsEnable: req.body.paramsmsEnable
+    paramsmsEnable: req.body.paramsmsEnable,
+    deviceType: req.body.deviceType,
+    numberInOrder: req.body.numberInOrder
   };
 
   var propNames = Object.getOwnPropertyNames(newValue);
@@ -48,7 +50,8 @@ module.exports.customizationFind = function(req, res) {
       "updateTimeMin": "240",
       "smsEnable": "0",
       "phoneNumber": "+7XXXXXXXXXX",
-      "paramsmsEnable": "1110000000011111100000"
+      "paramsmsEnable": "1110000000011111100000",
+      "deviceType": 0 // Улей
     };
 
     if (err) {

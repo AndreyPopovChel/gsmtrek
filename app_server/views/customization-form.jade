@@ -31,7 +31,21 @@ block content
           label.col-xs-10.col-sm-8.control-label(for="paramsmsEnable") Формат СМС сообщения
           .col-xs-12.col-sm-10
             input#name.form-control(name="paramsmsEnable")
+        .form-group
+          label.col-xs-10.col-sm-8.control-label(for="deviceType") Тип устройства
+          .col-xs-12.col-sm-10
+            select#name.form-control(name="deviceType")
+              option(value="1") Улей
+              option(value="2") Омшаник
+              option(value="3") Жилой вагон
+              option(value="4") Рабочий вагон
+              option(value="5") Пасека
+              option(value="6") Резерв 1
+              option(value="7") Резерв 2
+        .form-group
+          label.col-xs-10.col-sm-8.control-label(for="numberInOrder") Порядковый номер
+          .col-xs-12.col-sm-10
+            input#name.form-control(name="numberInOrder")
 
         button.btn.btn-default.pull-right Сохранить настройку ответа
     .col-xs-12.col-md-4
-

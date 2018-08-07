@@ -94,10 +94,10 @@ var renderCards = function(req, res, responseBody){
       {
         outsideParams = doc;
       }
-      else
-      {
-        mainLocations.push(doc);
-      }
+
+
+      mainLocations.push(doc);
+
     }
     else
     {
@@ -219,7 +219,9 @@ module.exports.doCustomize = function(req, res){
     updateTimeMin: req.body.updateTimeMin,
     smsEnable: req.body.smsEnable,
     phoneNumber: req.body.phoneNumber,
-    paramsmsEnable: req.body.paramsmsEnable
+    paramsmsEnable: req.body.paramsmsEnable,
+    deviceType: req.body.deviceType,
+    numberInOrder: req.body.numberInOrder
   };
   requestOptions = {
     url : apiOptions.server + path,

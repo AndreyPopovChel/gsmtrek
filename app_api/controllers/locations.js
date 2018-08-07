@@ -3,6 +3,7 @@ var moment = require('moment');
 var autoIncrement = require('mongoose-auto-increment');
 
 var Loc = mongoose.model('Location');
+var Customization = mongoose.model('Customization');
 var Stat = mongoose.model('Stat');
 
 var sendJSONresponse = function (res, status, content) {
@@ -66,56 +67,124 @@ module.exports.lastLocationsList = function (req, res) {
                 console.log('66 locations error:', err);
                 sendJSONresponse(res, 404, err);
             } else {
-                locations = buildLocationList(req, res, result, true);
-                sendJSONresponse(res, 200, locations);
+
+                Customization.find({}, function(err1, customizations) {
+                    var dict = {};
+                    for (i = 0; i < customizations.length; i++) {
+                        dict[customizations[i].sn] = customizations[i];
+                    }
+
+                    locations = buildLocationList(req, res, result, true, dict);
+
+                    sendJSONresponse(res, 200, locations);
+                });
             }
         }
     );
 };
 
-var buildLocationList = function (req, res, results, sortBySn) {
+var buildLocationList = function (req, res, results, sortBySn, dict) {
     var locations = [];
-    results.forEach(function (doc) {
-      if(doc.sn) {
-          locations.push({
-              sn: doc.sn,
-              ctr: doc.ctr,
-              batt: doc.batt,
-              date: doc.date,
-              time: doc.time,
-              lat: doc.lat,
-              lon: doc.lon,
-              gpsvis: doc.gpsvis,
-              gnsvis: doc.gnsvis,
-              satused: doc.satused,
-              gsmlc: doc.gsmlc,
-              gsmlat: doc.gsmlat,
-              gsmlon: doc.gsmlon,
-              gsmdate: doc.gsmdate,
-              gsmtime: doc.gsmtime,
-              humidity: doc.humidity,
-              "temperature 1": doc.temperature1,
-              pressurebarom: doc.pressurebarom,
-              "temperature 2": doc.temperature2,
-              TVOC: doc.TVOC,
-              CO2eq: doc.CO2eq,
-              acoustic: doc.acoustic,
-              timestamp: doc.timestamp ? moment(doc.timestamp).format('DD.MM.YYYY H:mm:ss') : '-',
-              number: doc.number
-          });
-      }
-    });
+
+        results.forEach(function (doc) {
+          if(doc.sn) {
+              var deviceType = 1; // Улей
+              var numberInOrder = parseInt(doc.sn);
+              var label = 'Улей';
+
+              if (dict && dict[doc.sn] ) {
+                  if(dict[doc.sn].deviceType)
+                  {
+                      deviceType = dict[doc.sn].deviceType;
+                  }
+                  if(dict[doc.sn].numberInOrder)
+                  {
+                      numberInOrder = dict[doc.sn].numberInOrder;
+                  }
+
+                  if(deviceType == 2)
+                  {
+                      label = 'Омшаник';
+                  }
+                  if(deviceType == 3)
+                  {
+                      label = 'Жилой вагон';
+                  }
+                  if(deviceType == 4)
+                  {
+                      label = 'Рабочий вагон';
+                  }
+                  if(deviceType == 5)
+                  {
+                      label = 'Пасека';
+                  }
+                  if(deviceType == 6)
+                  {
+                      label = 'Резерв 1';
+                  }
+                  if(deviceType == 7)
+                  {
+                      label = 'Резерв 2';
+                  }
+              }
+
+              locations.push({
+                  sn: doc.sn,
+                  ctr: doc.ctr,
+                  batt: doc.batt,
+                  date: doc.date,
+                  time: doc.time,
+                  lat: doc.lat,
+                  lon: doc.lon,
+                  gpsvis: doc.gpsvis,
+                  gnsvis: doc.gnsvis,
+                  satused: doc.satused,
+                  gsmlc: doc.gsmlc,
+                  gsmlat: doc.gsmlat,
+                  gsmlon: doc.gsmlon,
+                  gsmdate: doc.gsmdate,
+                  gsmtime: doc.gsmtime,
+                  humidity: doc.humidity,
+                  "temperature 1": doc.temperature1,
+                  pressurebarom: doc.pressurebarom,
+                  "temperature 2": doc.temperature2,
+                  TVOC: doc.TVOC,
+                  CO2eq: doc.CO2eq,
+                  acoustic: doc.acoustic,
+                  timestamp: doc.timestamp ? moment(doc.timestamp).format('DD.MM.YYYY H:mm:ss') : '-',
+                  number: doc.number,
+                  deviceType: deviceType,
+                  numberInOrder: numberInOrder,
+                  label: label
+              });
+          }
+      });
+
 
     if(sortBySn)
     {
         locations.sort(function (a, b) {
                 var left = 0;
-                if (a.sn) {
-                    left = parseInt(a.sn);
+
+                if(a.deviceType && b.deviceType && a.deviceType != b.deviceType)
+                {
+                    if(a.deviceType == 1)
+                    {
+                        return 1;
+                    }
+
+                    if(b.deviceType == 1)
+                    {
+                        return -1;
+                    }
+                }
+
+                if (a.numberInOrder) {
+                    left = a.numberInOrder;
                 }
                 var right = 0;
-                if (b.sn) {
-                    right = parseInt(b.sn);
+                if (b.numberInOrder) {
+                    right = b.numberInOrder;
                 }
                 return (left < right) ? -1 : ((right < left) ? 1 : 0);
             }
@@ -138,7 +207,7 @@ var buildLocationList = function (req, res, results, sortBySn) {
         locations = locations.slice(0, 500);
     }
 
-    return locations;
+     return locations;
 };
 
 /* GET a location by the id */

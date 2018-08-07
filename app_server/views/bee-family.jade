@@ -18,7 +18,7 @@ block content
         ul(style='opacity: #{location.opacity}').list-group.mb-2
           li.list-group-item.d-flex.justify-content-between
             div(style='height: 20px; length: 100%; background: #{location.color}')
-            h3.strong Улей № #{location.sn}
+            h3.strong #{location.label} ##{location.sn}
             .text-info Обновлено: #{location.timestamp}
             .text-info GPS: #{location.gsmlat}N #{location.gsmlon}E
           li.list-group-item.d-flex.justify-content-between.lh-condensed
@@ -44,7 +44,7 @@ block content
         ul(style='opacity: #{location.opacity}').list-group.mb-2
           li.list-group-item.d-flex.justify-content-between
             div(style='height: 20px; length: 100%; background: #{location.color}')
-            h3.strong Улей № #{location.sn}
+            h3.strong #{location.label} ##{location.sn}
             .text-info Обновлено: #{location.timestamp}
             .text-info GPS: #{location.gsmlat}N #{location.gsmlon}E
           li.list-group-item.d-flex.justify-content-between.lh-condensed

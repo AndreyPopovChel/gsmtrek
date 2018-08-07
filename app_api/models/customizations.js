@@ -7,7 +7,9 @@ var CustomizationSchema = new mongoose.Schema({
     updateTimeMin: String,
     smsEnable: String,
     phoneNumber: String,
-    paramsmsEnable: String
+    paramsmsEnable: String,
+    deviceType: Number,
+    numberInOrder: Number
 }, { _id: false });
 
 mongoose.model('Customization', CustomizationSchema);
