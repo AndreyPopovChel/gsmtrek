@@ -74,10 +74,9 @@ var renderCards = function(req, res, responseBody){
       message = "No places found nearby";
     }
   }
-
+  var additionalDevices = [];
   var mainLocations = [];
   var otherLocations = [];
-  var outsideParams = {};
 
   responseBody.forEach(function (doc) {
     if (moment(doc.timestamp, 'DD.MM.YYYY H:mm:ss').add(2, 'days').isBefore(/*now*/))
@@ -89,20 +88,18 @@ var renderCards = function(req, res, responseBody){
       doc.opacity = 1;
     }
 
-    if (parseInt(doc.sn) <= 100000) {
-      if(doc.sn == 301)
-      {
-        outsideParams = doc;
-      }
-
-
-      mainLocations.push(doc);
-
-    }
-    else
+    if(doc.deviceType !== 1)
     {
-      doc.color = 'blue';
-      otherLocations.push(doc);
+      additionalDevices.push(doc);
+    }
+    else {
+      if (parseInt(doc.sn) <= 100000) {
+        mainLocations.push(doc);
+      }
+      else {
+        doc.color = 'blue';
+        otherLocations.push(doc);
+      }
     }
   });
 
@@ -163,7 +160,7 @@ var renderCards = function(req, res, responseBody){
     sidebar: "",
     locations: mainLocations,
     otherLocations: otherLocations,
-    outside: outsideParams,
+    additionalDevices: additionalDevices,
     message: message
   });
 };

@@ -6,12 +6,27 @@ block content
        h1(style='opacity: 0;')= "____________________________________"
        h1(style='text-align: center; width: 70%')= "АРМ Пчеловода Система ТЕССО"
        image(src = '/images/background.jpg', style='position: absolute; top: 0px; right: 0px; height: 100px;')
-       h6(style='text-align: right') Погода на пасеке (обн. #{outside.timestamp}):
-         h5(style='text-align: right').text-success Температура: #{outside['temperature 2']} &deg;C
-         h5(style='text-align: right').text-success Влажность: #{outside.humidity} %
-         h5(style='text-align: right').text-success Давление: #{outside.pressurebarom} Pa
   .row
-      h3= "ОСНОВНАЯ ПАСЕКА"
+    each location, i in additionalDevices
+      .col-md-2.mb-2
+        ul(style='opacity: #{location.opacity}').list-group.mb-2
+          li.list-group-item.d-flex.justify-content-between
+            div(style='height: 20px; length: 100%; background: #{location.color}')
+            h3.strong #{location.label} ##{location.sn}
+            .text-info Обновлено: #{location.timestamp}
+            .text-info GPS: #{location.gsmlat}N #{location.gsmlon}E
+          li.list-group-item.d-flex.justify-content-between.lh-condensed
+            h5.text-center Температура
+            h5.text-danger T2 = #{location['temperature 2']} &deg;C
+            h5.text-center Влажность
+            h5.text-success H1 = #{location.humidity} %
+            h5.text-center Качество воздуха
+            h5.text-success CO2 = #{location.CO2eq} ppm
+            h5.text-danger ЛОВ = #{location.TVOC} ppb
+            h5.text-center Атмосферное давление
+            h5.text-success Давл. = #{location.pressurebarom} Pa
+  .row
+    h3= "ОСНОВНАЯ ПАСЕКА"
   .row
     each location, i in locations
       .col-md-2.mb-2
