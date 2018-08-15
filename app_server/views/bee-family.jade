@@ -7,6 +7,8 @@ block content
        h1(style='text-align: center; width: 70%')= "АРМ Пчеловода Система ТЕССО"
        image(src = '/images/background.jpg', style='position: absolute; top: 0px; right: 0px; height: 100px;')
   .row
+    h3= "ХОЗЯЙСТВЕННЫЕ ПОСТРОЙКИ"
+  .row
     each location, i in additionalDevices
       .col-md-2.mb-2
         ul(style='opacity: #{location.opacity}').list-group.mb-2

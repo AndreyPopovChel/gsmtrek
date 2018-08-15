@@ -116,7 +116,7 @@ var buildLocationList = function (req, res, results, sortBySn, dict) {
                   }
                   if(deviceType == 5)
                   {
-                      label = 'Пасека';
+                      label = 'Пасека улица';
                   }
                   if(deviceType == 6)
                   {
