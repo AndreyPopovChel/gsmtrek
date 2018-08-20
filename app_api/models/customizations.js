@@ -9,7 +9,8 @@ var CustomizationSchema = new mongoose.Schema({
     phoneNumber: String,
     paramsmsEnable: String,
     deviceType: Number,
-    numberInOrder: Number
+    numberInOrder: Number,
+    hideDevice: Boolean
 }, { _id: false });
 
 mongoose.model('Customization', CustomizationSchema);

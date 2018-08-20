@@ -18,7 +18,8 @@ module.exports.customizationsCreate = function(req, res) {
     phoneNumber: req.body.phoneNumber,
     paramsmsEnable: req.body.paramsmsEnable,
     deviceType: req.body.deviceType,
-    numberInOrder: req.body.numberInOrder
+    numberInOrder: req.body.numberInOrder,
+    hideDevice: req.body.hideDevice
   };
 
   var propNames = Object.getOwnPropertyNames(newValue);
@@ -27,6 +28,11 @@ module.exports.customizationsCreate = function(req, res) {
     if (newValue[propName] === null || newValue[propName] === undefined || newValue[propName] === "") {
       delete newValue[propName];
     }
+  }
+
+  if(!newValue.hideDevice)
+  {
+    newValue.hideDevice = false;
   }
 
   Customization.findOneAndUpdate({'sn':req.body.sn}, newValue, {upsert:true}, function(err, customization){

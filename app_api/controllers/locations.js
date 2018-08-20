@@ -91,6 +91,7 @@ var buildLocationList = function (req, res, results, sortBySn, dict) {
               var deviceType = 1; // Улей
               var numberInOrder = parseInt(doc.sn);
               var label = 'Улей';
+              var hideDevice = false;
 
               if (dict && dict[doc.sn] ) {
                   if(dict[doc.sn].deviceType)
@@ -100,6 +101,11 @@ var buildLocationList = function (req, res, results, sortBySn, dict) {
                   if(dict[doc.sn].numberInOrder)
                   {
                       numberInOrder = dict[doc.sn].numberInOrder;
+                  }
+
+                  if(dict[doc.sn].hideDevice &&dict[doc.sn].hideDevice == true )
+                  {
+                      hideDevice = true;
                   }
 
                   if(deviceType == 2)
@@ -155,7 +161,8 @@ var buildLocationList = function (req, res, results, sortBySn, dict) {
                   number: doc.number,
                   deviceType: deviceType,
                   numberInOrder: numberInOrder,
-                  label: label
+                  label: label,
+                  hideDevice: hideDevice
               });
           }
       });

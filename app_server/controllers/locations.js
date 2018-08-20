@@ -88,6 +88,11 @@ var renderCards = function(req, res, responseBody){
       doc.opacity = 1;
     }
 
+    if( doc.hideDevice === true)
+    {
+      doc.opacity = 0;
+    }
+
     if(doc.deviceType !== 1)
     {
       additionalDevices.push(doc);
@@ -218,7 +223,8 @@ module.exports.doCustomize = function(req, res){
     phoneNumber: req.body.phoneNumber,
     paramsmsEnable: req.body.paramsmsEnable,
     deviceType: req.body.deviceType,
-    numberInOrder: req.body.numberInOrder
+    numberInOrder: req.body.numberInOrder,
+    hideDevice: req.body.hideDevice
   };
   requestOptions = {
     url : apiOptions.server + path,
