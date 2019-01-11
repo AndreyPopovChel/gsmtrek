@@ -66,7 +66,16 @@ module.exports.customizationFind = function(req, res) {
     } else {
       if(customizations.length > 0)
       {
-        res.status(200).json(customizations[0]);
+        var result = {
+          "sn": customizations[0].sn,
+          "ctr": customizations[0].ctr,
+          "cfgLock": customizations[0].cfgLock,
+          "updateTimeMin": customizations[0].updateTimeMin,
+          "smsEnable": customizations[0].smsEnable,
+          "phoneNumber": customizations[0].phoneNumber,
+          "paramsmsEnable": customizations[0].paramsmsEnable
+        };       
+        res.status(200).json(result);
       }
       else
       {
