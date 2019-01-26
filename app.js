@@ -4,8 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 var cors = require('cors');
 require('./app_api/models/db');
+require('./app_api/passport');
 
 var routes = require('./app_server/routes/index');
 var routesApi = require('./app_api/routes/index');
@@ -25,6 +27,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({ secret: 'gsmtrek', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
 
 app.use('/', routes);
 app.use('/api', routesApi);

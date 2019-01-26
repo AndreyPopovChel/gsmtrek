@@ -50,3 +50,4 @@ process.on('SIGTERM', function() {
 require('./locations');
 require('./customizations');
 require('./stats');
+require('./User');
