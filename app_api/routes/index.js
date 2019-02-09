@@ -12,6 +12,7 @@ router.get('/locations/:locationid', ctrlLocations.locationsReadOne);
 
 router.post('/customize', ctrlCustomization.customizationsCreate);
 router.get('/customize', ctrlCustomization.customizationFind);
+router.get('/serialnumbers', ctrlCustomization.customizationsByOwner);
 
 router.get('/user', auth.optional, ctrlUsers.getUser);
 router.put('/user', auth.optional, ctrlUsers.putUser);

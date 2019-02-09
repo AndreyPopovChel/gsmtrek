@@ -93,7 +93,19 @@ var buildLocationList = function (req, res, results, sortBySn, dict) {
               var label = 'Улей';
               var hideDevice = false;
 
+              var skipByOwner = false;
+              if(req.query.username)
+              {
+                skipByOwner = true;
+              }
+
               if (dict && dict[doc.sn] ) {
+
+                  if(req.query.username === dict[doc.sn].ownerUserName)
+                  {
+                    skipByOwner = false;
+                  }
+
                   if(dict[doc.sn].deviceType)
                   {
                       deviceType = dict[doc.sn].deviceType;
@@ -134,36 +146,39 @@ var buildLocationList = function (req, res, results, sortBySn, dict) {
                   }
               }
 
-              locations.push({
-                  sn: doc.sn,
-                  ctr: doc.ctr,
-                  batt: doc.batt,
-                  date: doc.date,
-                  time: doc.time,
-                  lat: doc.lat,
-                  lon: doc.lon,
-                  gpsvis: doc.gpsvis,
-                  gnsvis: doc.gnsvis,
-                  satused: doc.satused,
-                  gsmlc: doc.gsmlc,
-                  gsmlat: doc.gsmlat,
-                  gsmlon: doc.gsmlon,
-                  gsmdate: doc.gsmdate,
-                  gsmtime: doc.gsmtime,
-                  humidity: doc.humidity,
-                  "temperature 1": doc.temperature1,
-                  pressurebarom: doc.pressurebarom,
-                  "temperature 2": doc.temperature2,
-                  TVOC: doc.TVOC,
-                  CO2eq: doc.CO2eq,
-                  acoustic: doc.acoustic,
-                  timestamp: doc.timestamp ? moment(doc.timestamp).format('DD.MM.YYYY H:mm:ss') : '-',
-                  number: doc.number,
-                  deviceType: deviceType,
-                  numberInOrder: numberInOrder,
-                  label: label,
-                  hideDevice: hideDevice
-              });
+              if(!skipByOwner)
+              {
+                locations.push({
+                    sn: doc.sn,
+                    ctr: doc.ctr,
+                    batt: doc.batt,
+                    date: doc.date,
+                    time: doc.time,
+                    lat: doc.lat,
+                    lon: doc.lon,
+                    gpsvis: doc.gpsvis,
+                    gnsvis: doc.gnsvis,
+                    satused: doc.satused,
+                    gsmlc: doc.gsmlc,
+                    gsmlat: doc.gsmlat,
+                    gsmlon: doc.gsmlon,
+                    gsmdate: doc.gsmdate,
+                    gsmtime: doc.gsmtime,
+                    humidity: doc.humidity,
+                    "temperature 1": doc.temperature1,
+                    pressurebarom: doc.pressurebarom,
+                    "temperature 2": doc.temperature2,
+                    TVOC: doc.TVOC,
+                    CO2eq: doc.CO2eq,
+                    acoustic: doc.acoustic,
+                    timestamp: doc.timestamp ? moment(doc.timestamp).format('DD.MM.YYYY H:mm:ss') : '-',
+                    number: doc.number,
+                    deviceType: deviceType,
+                    numberInOrder: numberInOrder,
+                    label: label,
+                    hideDevice: hideDevice
+                });
+              }
           }
       });
 
