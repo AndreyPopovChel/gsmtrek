@@ -88,21 +88,20 @@ module.exports.customizationFind = function(req, res) {
 
 module.exports.customizationsByOwner = function(req, res) {
 
-<<<<<<< HEAD
-  if(!req.query.username)
+  if(req.query.username)
+  {
+    Customization.find({ownerUserName: req.query.username},function(err, customizations){
+      var defaultResult = [];
+      if (err) {
+        console.log(err);
+        res.status(200).json(defaultResult);
+      } else {           
+          res.status(200).json(customizations);      
+      }
+    });
+  }
+  else
   {
     res.status(200).json([]);
-  }
-
-=======
->>>>>>> 52665bb08c97eaa85e015750095bf0f37004baf7
-  Customization.find({ownerUserName: req.query.username},function(err, customizations){
-    var defaultResult = [];
-    if (err) {
-      console.log(err);
-      res.status(200).json(defaultResult);
-    } else {           
-        res.status(200).json(customizations);      
-    }
-  });
+  }  
 };
