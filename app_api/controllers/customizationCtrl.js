@@ -88,11 +88,14 @@ module.exports.customizationFind = function(req, res) {
 
 module.exports.customizationsByOwner = function(req, res) {
 
+<<<<<<< HEAD
   if(!req.query.username)
   {
     res.status(200).json([]);
   }
 
+=======
+>>>>>>> 52665bb08c97eaa85e015750095bf0f37004baf7
   Customization.find({ownerUserName: req.query.username},function(err, customizations){
     var defaultResult = [];
     if (err) {
