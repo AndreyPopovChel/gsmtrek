@@ -10,7 +10,8 @@ var CustomizationSchema = new mongoose.Schema({
     paramsmsEnable: String,
     deviceType: Number,
     numberInOrder: Number,
-    hideDevice: Boolean
+    hideDevice: Boolean,
+    ownerUserName: String
 }, { _id: false });
 
 mongoose.model('Customization', CustomizationSchema);

@@ -19,7 +19,8 @@ module.exports.customizationsCreate = function(req, res) {
     paramsmsEnable: req.body.paramsmsEnable,
     deviceType: req.body.deviceType,
     numberInOrder: req.body.numberInOrder,
-    hideDevice: req.body.hideDevice
+    hideDevice: req.body.hideDevice,
+    ownerUserName: req.body.ownerUserName
   };
 
   var propNames = Object.getOwnPropertyNames(newValue);
@@ -81,6 +82,24 @@ module.exports.customizationFind = function(req, res) {
       {
         res.status(200).json(defaultResult);
       }
+    }
+  });
+};
+
+module.exports.customizationsByOwner = function(req, res) {
+
+  if(!req.query.username)
+  {
+    res.status(200).json([]);
+  }
+
+  Customization.find({ownerUserName: req.query.username},function(err, customizations){
+    var defaultResult = [];
+    if (err) {
+      console.log(err);
+      res.status(200).json(defaultResult);
+    } else {           
+        res.status(200).json(customizations);      
     }
   });
 };
