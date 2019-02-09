@@ -224,7 +224,8 @@ module.exports.doCustomize = function(req, res){
     paramsmsEnable: req.body.paramsmsEnable,
     deviceType: req.body.deviceType,
     numberInOrder: req.body.numberInOrder,
-    hideDevice: req.body.hideDevice
+    hideDevice: req.body.hideDevice,
+    ownerUserName: req.body.ownerUserName
   };
   requestOptions = {
     url : apiOptions.server + path,
