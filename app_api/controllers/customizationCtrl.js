@@ -102,6 +102,14 @@ module.exports.customizationsByOwner = function(req, res) {
   }
   else
   {
-    res.status(200).json([]);
+    Customization.find({},function(err, customizations){
+      var defaultResult = [];
+      if (err) {
+        console.log(err);
+        res.status(200).json(defaultResult);
+      } else {           
+          res.status(200).json(customizations);      
+      }
+    });
   }  
 };
