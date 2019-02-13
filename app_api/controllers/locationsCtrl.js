@@ -49,6 +49,7 @@ module.exports.lastLocationsList = function (req, res) {
                 _id: '$sn',
                 sn: { $first: '$sn' },
                 date: { $first: '$date' },
+                batt: { $first: '$batt' },
                 number: { $first: '$number' },
                 temperature1: { $first: '$temperature1' },
                 humidity: { $first: '$humidity' },
