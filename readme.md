@@ -1,6 +1,6 @@
 # Getting MEAN application code
 
-This is the code for the gsmtrek
+This is the code for the gsmtrek (server part)
 
 Формат запроса:  (в теле http запроса будет набор данных в формате json)
 {
