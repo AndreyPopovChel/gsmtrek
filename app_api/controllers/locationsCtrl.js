@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var moment = require('moment');
-var autoIncrement = require('mongoose-auto-increment');
 
 var Loc = mongoose.model('Location');
 var Customization = mongoose.model('Customization');
@@ -276,6 +275,7 @@ module.exports.locationsCreate = function (req, res) {
         gpsvis: req.body.gpsvis,
         gnsvis: req.body.gnsvis,
         satused: req.body.satused,
+        
         gsmlc: req.body.gsmlc,
         gsmlat: req.body.gsmlat,
         gsmlon: req.body.gsmlon,
