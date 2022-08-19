@@ -11,12 +11,14 @@ function getTokenFromHeader(req){
 
 var auth = {
   required: expressjwt({
-    secret: process.env.SECRET,
+    secret: process.env.SECRET, 
+    algorithms: ['RS256'],    
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }),
   optional: expressjwt({
-    secret: process.env.SECRET,
+    secret: process.env.SECRET, 
+    algorithms: ['RS256'],
     userProperty: 'payload',
     credentialsRequired: false,
     getToken: getTokenFromHeader
