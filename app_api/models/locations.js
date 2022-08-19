@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var autoIncrement = require('mongoose-auto-increment');
 
 autoIncrement.initialize(mongoose.connection);
 
@@ -29,12 +28,6 @@ var locationSchema = new mongoose.Schema({
     timestamp: Date
 });
 
-locationSchema.plugin(autoIncrement.plugin, {
-    model: 'Counter',
-    field: 'number',
-    startAt: 1,
-    incrementBy: 1
-});
 var Counter = mongoose.model('Counter', locationSchema);
 
 mongoose.model('Location', locationSchema);
