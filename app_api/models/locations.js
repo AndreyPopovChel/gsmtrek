@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
 
-autoIncrement.initialize(mongoose.connection);
-
 var locationSchema = new mongoose.Schema({
     sn: String,
     ctr: String,
