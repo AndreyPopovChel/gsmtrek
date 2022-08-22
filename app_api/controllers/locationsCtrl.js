@@ -208,7 +208,7 @@ var buildLocationList = function (req, res, results, sortBySn, dict) {
                 if (b.numberInOrder) {
                     right = b.numberInOrder;
                 }
-                return (left < right) ? -1 : ((right < left) ? 1 : 0);
+                return (left < right) ? 1 : ((right < left) ? -1 : 0);
             }
         );
     }
