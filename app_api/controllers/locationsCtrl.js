@@ -215,12 +215,12 @@ var buildLocationList = function (req, res, results, sortBySn, dict) {
     else {
         locations.sort(function (a, b) {
                 var left = 0;
-                if (a.number) {
-                    left = parseInt(a.number);
+                if (a.timestamp) {
+                    left = moment(a.timestamp);
                 }
                 var right = 0;
-                if (b.number) {
-                    right = parseInt(b.number);
+                if (b.timestamp) {
+                    right = moment(b.timestamp);
                 }
                 return (left < right) ? 1 : ((right < left) ? -1 : 0);
             }
