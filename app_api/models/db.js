@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var gracefulShutdown;
-var dbURI = 'mongodb://gsmtrek:gsmtrek1@ds127126.mlab.com:27126/gsmtrek';
+var dbURI = 'mongodb+srv://gsmtrek:gsmtrek24@cluster0.kzxmsaq.mongodb.net/?retryWrites=true&w=majority';
 /*
 if (process.env.NODE_ENV === 'production') {
     dbURI = process.env.MONGOLAB_URI;
