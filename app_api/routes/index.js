@@ -14,9 +14,9 @@ router.post('/customize', ctrlCustomization.customizationsCreate);
 router.get('/customize', ctrlCustomization.customizationFind);
 router.get('/serialnumbers', ctrlCustomization.customizationsByOwner);
 
-router.get('/user', auth.optional, ctrlUsers.getUser);
-router.put('/user', auth.optional, ctrlUsers.putUser);
-router.post('/users/login', auth.optional, ctrlUsers.login);
-router.post('/users', auth.optional, ctrlUsers.postUser);
+router.get('/user', ctrlUsers.getUser);
+router.put('/user', ctrlUsers.putUser);
+router.post('/users/login', ctrlUsers.login);
+router.post('/users', /*auth.optional,*/ ctrlUsers.postUser);
 
 module.exports = router;
