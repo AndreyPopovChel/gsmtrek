@@ -216,11 +216,11 @@ var buildLocationList = function (req, res, results, sortBySn, dict) {
         locations.sort(function (a, b) {
                 var left = 0;
                 if (a.timestamp) {
-                    left = moment(a.timestamp).valueOf();
+                    left = moment(a.timestamp);
                 }
                 var right = 0;
                 if (b.timestamp) {
-                    right = moment(b.timestamp).valueOf();
+                    right = moment(b.timestamp);
                 }
                 return (left < right) ? 1 : ((right < left) ? -1 : 0);
             }
