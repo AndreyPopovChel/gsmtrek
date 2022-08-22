@@ -74,7 +74,7 @@ module.exports.lastLocationsList = function (req, res) {
                         dict[customizations[i].sn] = customizations[i];
                     }
 
-                    locations = buildLocationList(req, res, result, true, dict);
+                    locations = buildLocationList(req, res, result, false, dict);
 
                     sendJSONresponse(res, 200, locations);
                 });
