@@ -43,7 +43,7 @@ module.exports.locationsList = function (req, res) {
 module.exports.lastLocationsList = function (req, res) {
     Loc.aggregate(
         [
-            { $sort: { 'number': -1 } },
+            { $sort: { 'timestamp': -1 } },
             { $group: {
                 _id: '$sn',
                 sn: { $first: '$sn' },
@@ -74,7 +74,7 @@ module.exports.lastLocationsList = function (req, res) {
                         dict[customizations[i].sn] = customizations[i];
                     }
 
-                    locations = buildLocationList(req, res, result, false, dict);
+                    locations = buildLocationList(req, res, result, true, dict);
 
                     sendJSONresponse(res, 200, locations);
                 });
