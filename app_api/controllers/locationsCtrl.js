@@ -56,8 +56,8 @@ module.exports.lastLocationsList = function (req, res) {
                 CO2eq: { $first: '$CO2eq' },
                 TVOC: { $first: '$TVOC' },
                 pressurebarom: { $first: '$pressurebarom' },
-                gsmlat: { $first: '$gsmlat' },
-                gsmlon: { $first: '$gsmlon' },
+                lat: { $first: '$lat' },
+                lon: { $first: '$lon' },
                 timestamp: { $first: '$timestamp' }
             }}
         ],
