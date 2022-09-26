@@ -226,7 +226,7 @@ var buildLocationList = function (req, res, results, sortBySn, dict) {
             }
         );
 
-        locations = locations.slice(0, 500).reverse();
+        locations = locations.reverse().slice(0, 500);
     }
 
      return locations;
